@@ -1,24 +1,73 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Perform validation and submit the form data
+    if (name && email && phone && password) {
+      // Handle form submission or API call here
+      alert(`Form submitted! \n Name: ${name}, Email: ${email}, Phone No: ${phone}`);
+      // Reset form fields
+      setName('');
+      setEmail('');
+      setPhone('');
+      setPassword('');
+    } else {
+      // Display an error or validation message
+      alert('Please fill in all fields!');
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h1 style={{textAlign: 'center'}}>Login Form</h1>
+      <div className='container'>
+      <div>
+        <label>Name</label><br/>
+        <input
+          type="text"
+          placeholder='Enter username'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Email</label><br/>
+        <input
+          type="email"
+          placeholder='Enter email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Phone Number</label><br/>
+        <input
+          type="number"
+          placeholder='Enter phone number'
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Password</label><br/>
+        <input
+          type="password"
+          placeholder='Enter password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button type="submit">Submit</button>
+      </div>
+    </form>
   );
 }
 
